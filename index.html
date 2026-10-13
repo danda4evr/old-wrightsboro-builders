@@ -10,40 +10,31 @@
     />
     <style>
       :root {
-        --navy: #0d294d;
-        --navy-dark: #071a32;
+        --navy: #102b50;
+        --navy-deep: #071a32;
         --gold: #a47732;
+        --gold-light: #d2b477;
         --cream: #f8f5ed;
-        --brown: #70491e;
-        --ink: #182332;
-        --muted: #657080;
-        --white: #ffffff;
-        --line: rgba(13, 41, 77, 0.16);
-        --shadow: 0 18px 45px rgba(13, 41, 77, 0.15);
+        --paper: #fffdf8;
+        --ink: #192536;
+        --muted: #687384;
+        --line: rgba(16, 43, 80, 0.16);
+        --shadow: 0 18px 45px rgba(16, 43, 80, 0.15);
       }
 
       * { box-sizing: border-box; }
 
-      html {
-        scroll-behavior: smooth;
-      }
+      html { scroll-behavior: smooth; }
 
       body {
         margin: 0;
-        color: var(--ink);
         background: var(--cream);
+        color: var(--ink);
         font: 16px/1.6 Arial, Helvetica, sans-serif;
       }
 
-      img {
-        display: block;
-        max-width: 100%;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; }
 
       .container {
         width: min(1180px, calc(100vw - 48px));
@@ -51,7 +42,7 @@
       }
 
       .topbar {
-        background: var(--navy-dark);
+        background: var(--navy-deep);
         color: #fff;
         font-size: 0.9rem;
       }
@@ -66,17 +57,17 @@
       }
 
       .topbar a {
+        opacity: 0.9;
         color: #fff;
-        opacity: 0.92;
       }
 
       .site-header {
         position: sticky;
         top: 0;
         z-index: 10;
-        background: rgba(255, 255, 255, 0.97);
+        background: rgba(255, 255, 255, 0.96);
         border-bottom: 1px solid var(--line);
-        box-shadow: 0 3px 18px rgba(13, 41, 77, 0.06);
+        box-shadow: 0 3px 18px rgba(16, 43, 80, 0.06);
       }
 
       .nav {
@@ -133,18 +124,20 @@
       }
 
       .hero {
+        min-height: 650px;
+        display: flex;
+        align-items: center;
         color: #fff;
         background:
-          linear-gradient(110deg, rgba(7, 26, 50, 0.94), rgba(13, 41, 77, 0.72)),
+          linear-gradient(105deg, rgba(7, 26, 50, 0.95), rgba(16, 43, 80, 0.67)),
           url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
       }
 
       .hero-inner {
         display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 36px;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 46px;
         align-items: center;
-        min-height: 590px;
       }
 
       .eyebrow {
@@ -158,7 +151,7 @@
 
       h1 {
         margin: 16px 0 20px;
-        font-size: clamp(2.7rem, 5vw, 5rem);
+        font-size: clamp(2.8rem, 5vw, 5rem);
         line-height: 0.98;
         letter-spacing: -0.06em;
       }
@@ -218,9 +211,7 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.18);
       }
 
-      .stat:last-child {
-        border-bottom: none;
-      }
+      .stat:last-child { border-bottom: none; }
 
       .stat strong {
         display: block;
@@ -237,7 +228,7 @@
       }
 
       .section-heading {
-        max-width: 780px;
+        max-width: 760px;
         margin-bottom: 34px;
       }
 
@@ -263,32 +254,6 @@
         letter-spacing: -0.05em;
       }
 
-      .about-grid {
-        display: grid;
-        grid-template-columns: 0.9fr 1.1fr;
-        gap: 40px;
-        align-items: center;
-      }
-
-      .about-photo {
-        min-height: 420px;
-        border-radius: 26px;
-        background:
-          linear-gradient(rgba(13, 41, 77, 0.08), rgba(13, 41, 77, 0.08)),
-          url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-        box-shadow: var(--shadow);
-      }
-
-      .about-copy {
-        color: var(--ink);
-      }
-
-      .about-copy p {
-        margin: 0 0 20px;
-        color: var(--muted);
-        font-size: 1.05rem;
-      }
-
       .services-grid,
       .process-grid {
         display: grid;
@@ -302,7 +267,7 @@
         background: rgba(255, 255, 255, 0.5);
         border: 1px solid var(--line);
         border-radius: 20px;
-        box-shadow: 0 12px 28px rgba(13, 41, 77, 0.04);
+        box-shadow: 0 12px 28px rgba(16, 43, 80, 0.04);
       }
 
       .service-card h3,
@@ -316,6 +281,75 @@
       .process-card p {
         margin: 0;
         color: var(--muted);
+      }
+
+      .project-section {
+        background: #eeeae1;
+      }
+
+      .project-scroll {
+        display: flex;
+        gap: 24px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 4px 4px 20px;
+        margin: 0 -4px;
+        scrollbar-color: var(--gold) rgba(16, 43, 80, 0.1);
+      }
+
+      .project-card {
+        flex: 0 0 350px;
+        scroll-snap-align: start;
+        background: rgba(255,255,255,0.6);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 14px 30px rgba(16, 43, 80, 0.08);
+      }
+
+      .project-card img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .project-card .caption {
+        padding: 16px 18px 18px;
+        font-weight: 700;
+        color: var(--navy);
+      }
+
+      .about {
+        background: #fff;
+        border-block: 1px solid var(--line);
+      }
+
+      .about-grid,
+      .contact-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 44px;
+        align-items: center;
+      }
+
+      .about-photo {
+        min-height: 420px;
+        border-radius: 26px;
+        background:
+          linear-gradient(rgba(13, 41, 77, 0.08), rgba(13, 41, 77, 0.08)),
+          url('kitchen.jpeg') center/cover no-repeat;
+        box-shadow: var(--shadow);
+      }
+
+      .about-copy {
+        color: var(--ink);
+      }
+
+      .about-copy p {
+        margin: 0 0 20px;
+        color: var(--muted);
+        font-size: 1.05rem;
       }
 
       ul {
@@ -351,12 +385,6 @@
       .cta-box p {
         margin: 0;
         color: rgba(255, 255, 255, 0.78);
-      }
-
-      .contact-wrap {
-        display: grid;
-        grid-template-columns: 0.8fr 1.2fr;
-        gap: 32px;
       }
 
       .contact-card,
@@ -412,7 +440,7 @@
       .site-footer {
         border-top: 1px solid var(--line);
         padding: 20px 0 36px;
-        background: rgba(255, 255, 255, 0.4);
+        background: rgba(255,255,255,0.4);
       }
 
       .footer-inner {
@@ -477,11 +505,11 @@
   <body>
     <div class="topbar">
       <div class="container topbar-inner">
-        <div>Serving Wilmington, NC &amp; surrounding areas</div>
-        <div>
+        <span>Serving Wilmington, NC &amp; surrounding areas</span>
+        <span>
           <a href="tel:9106201440">(910) 620-1440</a>
           &nbsp; <a href="mailto:kevin@oldwrightsborobuilders.com">kevin@oldwrightsborobuilders.com</a>
-        </div>
+        </span>
       </div>
     </div>
 
@@ -494,6 +522,7 @@
 
         <nav class="nav-links" aria-label="Main navigation">
           <a href="#services">Services</a>
+          <a href="#projects">Projects</a>
           <a href="#about">About</a>
           <a href="#process">Process</a>
           <a href="#contact">Contact</a>
@@ -558,6 +587,51 @@
             <article class="service-card">
               <h3>Interior Updates</h3>
               <p>Refresh your home with high-quality finishes, trim work, flooring, and practical updates that improve comfort.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="project-section">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-label">Our work</span>
+            <h2>Quality work, made to be lived in.</h2>
+            <p>Browse a few recent project highlights from completed remodels and home improvements.</p>
+          </div>
+
+          <div class="project-scroll">
+            <article class="project-card">
+              <img src="bath%201.jpeg" alt="Bathroom remodel project" />
+              <div class="caption">Bathroom Renovation</div>
+            </article>
+            <article class="project-card">
+              <img src="bath%202.jpeg" alt="Bathroom remodel project" />
+              <div class="caption">Bathroom Renovation</div>
+            </article>
+            <article class="project-card">
+              <img src="kitchen.jpeg" alt="Kitchen remodel project" />
+              <div class="caption">Kitchen Remodel</div>
+            </article>
+            <article class="project-card">
+              <img src="patio%201.jpeg" alt="Outdoor patio project" />
+              <div class="caption">Outdoor Patio</div>
+            </article>
+            <article class="project-card">
+              <img src="patio%202.jpeg" alt="Outdoor patio project" />
+              <div class="caption">Outdoor Patio</div>
+            </article>
+            <article class="project-card">
+              <img src="enclosed%20patio%201.jpeg" alt="Enclosed patio project" />
+              <div class="caption">Enclosed Patio</div>
+            </article>
+            <article class="project-card">
+              <img src="enclosed%20patio%202.jpeg" alt="Enclosed patio project" />
+              <div class="caption">Enclosed Patio</div>
+            </article>
+            <article class="project-card">
+              <img src="fence.jpeg" alt="Fence installation project" />
+              <div class="caption">Outdoor Improvement</div>
             </article>
           </div>
         </div>
