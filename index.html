@@ -1,69 +1,678 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Old Wrightsboro Builders | Home</title>
-    <meta name="description" content="Old Wrightsboro Builders provides quality remodeling and home improvement services in Wilmington, NC and surrounding areas.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Old Wrightsboro Builders | Built on Trust</title>
+    <meta
+      name="description"
+      content="Old Wrightsboro Builders provides quality residential remodeling and home improvement services in Wilmington, NC and surrounding areas."
+    />
+    <style>
+      :root {
+        --navy: #0d294d;
+        --navy-dark: #071a32;
+        --gold: #a47732;
+        --cream: #f8f5ed;
+        --brown: #70491e;
+        --ink: #182332;
+        --muted: #657080;
+        --white: #ffffff;
+        --line: rgba(13, 41, 77, 0.16);
+        --shadow: 0 18px 45px rgba(13, 41, 77, 0.15);
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--cream);
+        font: 16px/1.6 Arial, Helvetica, sans-serif;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1180px, calc(100vw - 48px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        background: var(--navy-dark);
+        color: #fff;
+        font-size: 0.9rem;
+      }
+
+      .topbar-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 9px 0;
+        flex-wrap: wrap;
+      }
+
+      .topbar a {
+        color: #fff;
+        opacity: 0.92;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.97);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 3px 18px rgba(13, 41, 77, 0.06);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        min-height: 82px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        flex-shrink: 0;
+      }
+
+      .brand img {
+        width: 52px;
+        height: 52px;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+
+      .brand-text {
+        color: var(--navy);
+        font-size: 1.18rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-left: auto;
+      }
+
+      .nav-links a {
+        color: var(--navy);
+        font-weight: 600;
+      }
+
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.8rem 1.25rem;
+        background: var(--gold);
+        color: #fff;
+        border-radius: 999px;
+        font-weight: 700;
+        box-shadow: 0 10px 24px rgba(164, 119, 50, 0.18);
+      }
+
+      .hero {
+        color: #fff;
+        background:
+          linear-gradient(110deg, rgba(7, 26, 50, 0.94), rgba(13, 41, 77, 0.72)),
+          url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 36px;
+        align-items: center;
+        min-height: 590px;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+        font-weight: 700;
+        opacity: 0.9;
+      }
+
+      h1 {
+        margin: 16px 0 20px;
+        font-size: clamp(2.7rem, 5vw, 5rem);
+        line-height: 0.98;
+        letter-spacing: -0.06em;
+      }
+
+      .lead {
+        max-width: 620px;
+        margin: 0;
+        font-size: 1.14rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.88);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 30px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.95rem 1.5rem;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: opacity 0.2s ease;
+      }
+
+      .btn:hover,
+      .btn:focus-visible {
+        opacity: 0.9;
+      }
+
+      .btn-primary {
+        background: var(--gold);
+        color: #fff;
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        color: #fff;
+      }
+
+      .hero-panel {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 18px;
+        padding: 26px;
+        backdrop-filter: blur(4px);
+        box-shadow: var(--shadow);
+      }
+
+      .stat {
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      .stat:last-child {
+        border-bottom: none;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.35rem;
+        margin-bottom: 6px;
+      }
+
+      .stat span {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      section {
+        padding: 88px 0;
+      }
+
+      .section-heading {
+        max-width: 780px;
+        margin-bottom: 34px;
+      }
+
+      .section-heading p {
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .section-label {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--gold);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: clamp(2.1rem, 3vw, 3.2rem);
+        line-height: 1.16;
+        letter-spacing: -0.05em;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 40px;
+        align-items: center;
+      }
+
+      .about-photo {
+        min-height: 420px;
+        border-radius: 26px;
+        background:
+          linear-gradient(rgba(13, 41, 77, 0.08), rgba(13, 41, 77, 0.08)),
+          url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+        box-shadow: var(--shadow);
+      }
+
+      .about-copy {
+        color: var(--ink);
+      }
+
+      .about-copy p {
+        margin: 0 0 20px;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .services-grid,
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 28px;
+      }
+
+      .service-card,
+      .process-card {
+        padding: 26px 22px;
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        box-shadow: 0 12px 28px rgba(13, 41, 77, 0.04);
+      }
+
+      .service-card h3,
+      .process-card h3 {
+        margin: 0 0 12px;
+        font-size: 1.5rem;
+        letter-spacing: -0.04em;
+      }
+
+      .service-card p,
+      .process-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      ul {
+        margin: 18px 0 0;
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 8px;
+        color: var(--muted);
+      }
+
+      .cta {
+        padding-top: 20px;
+      }
+
+      .cta-box {
+        background: linear-gradient(135deg, rgba(13, 41, 77, 0.96), rgba(7, 26, 50, 1));
+        border-radius: 28px;
+        padding: 34px 36px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .cta-box h2 {
+        margin: 0 0 8px;
+      }
+
+      .cta-box p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .contact-wrap {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 32px;
+      }
+
+      .contact-card,
+      .contact-form {
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 28px;
+      }
+
+      .contact-card h3,
+      .contact-form h3 {
+        margin: 0 0 16px;
+        font-size: 1.5rem;
+      }
+
+      .contact-card p,
+      .contact-card a {
+        display: block;
+        margin: 0 0 10px;
+        color: var(--muted);
+      }
+
+      .field-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 12px;
+        padding: 0.9rem 1rem;
+        font: inherit;
+        color: var(--ink);
+      }
+
+      .contact-form textarea {
+        min-height: 140px;
+        margin-top: 14px;
+        resize: vertical;
+      }
+
+      .contact-form button {
+        margin-top: 16px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .site-footer {
+        border-top: 1px solid var(--line);
+        padding: 20px 0 36px;
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        color: var(--muted);
+      }
+
+      @media (max-width: 900px) {
+        .hero-inner,
+        .about-grid,
+        .contact-wrap,
+        .services-grid,
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          flex-wrap: wrap;
+          justify-content: center;
+          padding: 16px 0;
+        }
+
+        .nav-links {
+          width: 100%;
+          justify-content: center;
+          margin: 0;
+          flex-wrap: wrap;
+        }
+
+        .cta-box,
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .field-row {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-inner {
+          min-height: auto;
+          padding: 52px 0 60px;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .btn,
+        .nav-cta {
+          width: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#top">
-        <span class="brand-mark">OW</span>
-        <span class="brand-text">Old Wrightsboro Builders</span>
-      </a>
-      <nav class="site-nav">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="btn btn-primary nav-cta" href="#contact">Request a Quote</a>
-    </div>
-  </header>
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <span class="section-label">Custom home improvements</span>
-          <h1>Thoughtful craftsmanship for homes built to last.</h1>
-          <p>Old Wrightsboro Builders delivers reliable residential remodeling and renovation services with a focus on quality, communication, and craftsmanship.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Get a free estimate</a>
-            <a class="btn btn-secondary" href="#services">Explore services</a>
-          </div>
-        </div>
-        <div class="hero-card">
-          <div class="mini-stat"><strong>15+</strong><span>Years of experience</span></div>
-          <div class="mini-stat"><strong>Residential</strong><span>Kitchen, bath, and exterior work</span></div>
-          <div class="mini-stat"><strong>Local</strong><span>Serving Wilmington, NC and surrounding areas</span></div>
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <div>Serving Wilmington, NC &amp; surrounding areas</div>
+        <div>
+          <a href="tel:9106201440">(910) 620-1440</a>
+          &nbsp; <a href="mailto:kevin@oldwrightsborobuilders.com">kevin@oldwrightsborobuilders.com</a>
         </div>
       </div>
-    </section>
-    <section id="about" class="about"><div class="container"><div class="section-heading"><span class="section-label">About us</span><h2>Built on trust, quality, and honest service.</h2></div><div class="about-grid"><div><p>At Old Wrightsboro Builders, we take pride in creating spaces that are functional, beautiful, and tailored to the way you live. Whether it’s a small upgrade or a larger renovation, we aim to make every project smooth, respectful, and expertly finished.</p><p>We believe in clear communication, dependable timelines, and craftsmanship that stands the test of time.</p></div><div class="about-panel"><ul><li>Residential remodeling</li><li>Custom interior updates</li><li>Exterior improvements</li><li>Project planning and execution</li></ul></div></div></div></section>
-    <section id="services" class="services"><div class="container"><div class="section-heading"><span class="section-label">Services</span><h2>Home improvements designed around your goals.</h2></div><div class="services-grid"><div class="service-card"><h3>Kitchen Remodeling</h3><p>Transform your kitchen with smarter layouts, durable finishes, and practical upgrades.</p></div><div class="service-card"><h3>Bathroom Renovations</h3><p>Create a more comfortable, efficient space with expert craftsmanship and updated design.</p></div><div class="service-card"><h3>Interior Updates</h3><p>Refresh interior spaces with high-quality finishes, trim, flooring, and functional improvements.</p></div><div class="service-card"><h3>Exterior Projects</h3><p>Improve curb appeal and durability with exterior improvements built for everyday life.</p></div></div></div></section>
-    <section id="process" class="process"><div class="container"><div class="section-heading"><span class="section-label">How we work</span><h2>A simple process from idea to completion.</h2></div><div class="process-grid"><div class="step"><div class="step-number">1</div><h3>Consultation</h3><p>We learn about your goals, timeline, budget, and project.</p></div><div class="step"><div class="step-number">2</div><h3>Planning</h3><p>We define scope, materials, and expectations.</p></div><div class="step"><div class="step-number">3</div><h3>Execution</h3><p>We complete the work with care and quality standards.</p></div><div class="step"><div class="step-number">4</div><h3>Finish</h3><p>A final walkthrough ensures everything is complete and clean.</p></div></div></div></section>
-    <section class="cta"><div class="container cta-box"><div><span class="section-label">Need a remodel?</span><h2>Let’s talk about your next project.</h2><p>From kitchen upgrades to full residential improvements, we’re ready to help.</p></div><a class="btn btn-primary" href="#contact">Request a Quote</a></div></section>
-    <section id="contact"><div class="container"><div class="section-heading"><span class="section-label">Contact</span><h2>Ready to get started?</h2></div><div class="contact-wrap"><div class="contact-card"><h3>Old Wrightsboro Builders</h3><div class="contact-list"><div class="contact-item"><div class="contact-icon">☎</div><div><strong>Phone</strong><br><a href="tel:9106201440">(910) 620-1440</a></div></div><div class="contact-item"><div class="contact-icon">✉</div><div><strong>Email</strong><br><a href="mailto:kevin@oldwrightsborobuilders.com">kevin@oldwrightsborobuilders.com</a></div></div><div class="contact-item"><div class="contact-icon">⌖</div><div><strong>Service Area</strong><br>Wilmington, NC and surrounding areas</div></div></div></div><div class="contact-form"><h3>Request a quote</h3>
-        <form action="https://formsubmit.co/kevin@oldwrightsborobuilders.com" method="POST">
-          <div class="field-row">
-            <input name="name" placeholder="Your name" required>
-            <input name="phone" placeholder="Phone number">
+    </div>
+
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="#top" aria-label="Old Wrightsboro Builders home">
+          <img src="owb website.jpeg" alt="Old Wrightsboro Builders logo" />
+          <span class="brand-text">Old Wrightsboro Builders</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#process">Process</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <a class="nav-cta" href="#contact">Request a Quote</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div>
+            <div class="eyebrow">Quality • Integrity • Craftsmanship</div>
+            <h1>Built on trust. Crafted to last.</h1>
+            <p class="lead">
+              Old Wrightsboro Builders delivers high-quality residential remodeling,
+              renovations, and custom home improvements with a focus on craftsmanship,
+              communication, and honest service.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#contact">Get a free estimate</a>
+              <a class="btn btn-secondary" href="#services">Explore services</a>
+            </div>
           </div>
-          <input type="email" name="email" placeholder="Email address" required>
-          <textarea name="message" placeholder="Tell us about your project" required></textarea>
-          <input type="hidden" name="_subject" value="New quote request from website">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://oldwrightsborobuilders.com/thank-you.html">
-          <button class="btn btn-primary" type="submit">Send Request</button>
-        </form>
-      </div></div></div></section>
-  </main>
-  <footer class="site-footer"><div class="container footer-inner"><div>© <span id="year"></span> Old Wrightsboro Builders</div><div>Built on trust | Wilmington, NC</div></div></footer><script>document.getElementById('year').textContent=new Date().getFullYear()</script>
-</body>
+
+          <div class="hero-panel" aria-label="Quick project highlights">
+            <div class="stat">
+              <strong>15+ Years</strong>
+              <span>of remodeling and renovation experience</span>
+            </div>
+            <div class="stat">
+              <strong>Residential</strong>
+              <span>Kitchen, bath, decks, and exterior upgrades</span>
+            </div>
+            <div class="stat">
+              <strong>Local</strong>
+              <span>Serving Wilmington, NC and surrounding areas</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-label">Our services</span>
+            <h2>Complete remodeling solutions for your home or property.</h2>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <h3>Kitchen Remodeling</h3>
+              <p>Transform your kitchen with custom cabinetry, durable finishes, and thoughtful layouts designed for daily life.</p>
+            </article>
+
+            <article class="service-card">
+              <h3>Bathroom Renovations</h3>
+              <p>Create a more comfortable, efficient, and beautiful space with expert craftsmanship and updated design.</p>
+            </article>
+
+            <article class="service-card">
+              <h3>Interior Updates</h3>
+              <p>Refresh your home with high-quality finishes, trim work, flooring, and practical updates that improve comfort.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about">
+        <div class="container about-grid">
+          <div class="about-photo" aria-label="Home renovation project"></div>
+
+          <div class="about-copy">
+            <span class="section-label">About us</span>
+            <h2>Built on trust, quality, and honest service.</h2>
+            <p>
+              At Old Wrightsboro Builders, we take pride in creating spaces that feel warm,
+              functional, and built to last. Whether it’s a small upgrade or a major renovation,
+              we focus on craftsmanship, clear communication, and reliable results.
+            </p>
+            <p>
+              We believe in honest pricing, dependable timelines, and real craftsmanship that
+              stands the test of time. From planning to completion, we work closely with you to
+              make sure your home reflects your goals and your lifestyle.
+            </p>
+            <ul>
+              <li>Residential remodeling</li>
+              <li>Custom interior upgrades</li>
+              <li>Exterior improvements and finishing work</li>
+              <li>Project planning and execution</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="process">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-label">How we work</span>
+            <h2>A simple process from idea to completion.</h2>
+          </div>
+
+          <div class="process-grid">
+            <article class="process-card">
+              <h3>1. Consultation</h3>
+              <p>We begin with a conversation about your goals, priorities, and timeline so we can plan the right fit.</p>
+            </article>
+
+            <article class="process-card">
+              <h3>2. Planning</h3>
+              <p>We walk through scope, materials, and expectations before moving into the build phase.</p>
+            </article>
+
+            <article class="process-card">
+              <h3>3. Build</h3>
+              <p>From start to finish, we keep the job organized, efficient, and focused on quality craftsmanship.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div class="container cta-box">
+          <div>
+            <span class="section-label">Need a remodel?</span>
+            <h2>Let’s talk about your next project.</h2>
+            <p>From kitchen upgrades to full home renovations, we can help you plan the right next step.</p>
+          </div>
+          <a class="btn btn-primary" href="#contact">Schedule a consultation</a>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-label">Contact</span>
+            <h2>Ready to get started?</h2>
+          </div>
+
+          <div class="contact-wrap">
+            <div class="contact-card">
+              <h3>Let’s build something great</h3>
+              <p>We serve homeowners across Wilmington, NC and surrounding communities.</p>
+              <a href="tel:9106201440">(910) 620-1440</a>
+              <a href="mailto:kevin@oldwrightsborobuilders.com">kevin@oldwrightsborobuilders.com</a>
+            </div>
+
+            <div class="contact-form">
+              <h3>Request a free quote</h3>
+              <form action="https://formsubmit.co/kevin@oldwrightsborobuilders.com" method="POST">
+                <div class="field-row">
+                  <input type="text" name="name" placeholder="Your name" required />
+                  <input type="tel" name="phone" placeholder="Phone number" />
+                </div>
+                <div style="margin-top:14px;">
+                  <input type="email" name="email" placeholder="Email address" required />
+                </div>
+                <textarea name="message" placeholder="Tell us about your project" required></textarea>
+                <input type="hidden" name="_subject" value="New quote request from website" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value="https://oldwrightsborobuilders.com/thank-you.html" />
+                <button class="btn btn-primary" type="submit">Send Request</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>© <span id="year"></span> Old Wrightsboro Builders</div>
+        <div>Built on trust | Wilmington, NC</div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>
