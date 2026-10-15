@@ -638,51 +638,6 @@
           gap: 8px;
         }
       }
-
-      /* Subtle floating call button (mobile only) */
-      .call-float {
-        position: fixed;
-        bottom: 14px;
-        right: 14px;
-        width: 58px;
-        height: 58px;
-        background: linear-gradient(135deg, rgba(164,119,50,0.95), rgba(210,180,119,0.92));
-        color: #fff;
-        border-radius: 999px;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 8px 18px rgba(16,43,80,0.14);
-        z-index: 9999;
-        text-decoration: none;
-        font-weight: 700;
-        transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
-        border: 1px solid rgba(255,255,255,0.12);
-        opacity: 0.95;
-      }
-
-      @supports (bottom: env(safe-area-inset-bottom)) {
-        .call-float {
-          bottom: calc(14px + env(safe-area-inset-bottom));
-        }
-      }
-
-      .call-float svg {
-        width: 18px;
-        height: 18px;
-        display: block;
-        fill: #fff;
-      }
-
-      .call-float:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(16,43,80,0.18);
-        opacity: 1;
-      }
-
-      @media (max-width: 650px) {
-        .call-float { display: inline-flex; }
-      }
     </style>
   </head>
   <body>
@@ -734,7 +689,6 @@
               communication, and honest service.
             </p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact">Get a free estimate</a>
               <a class="btn btn-secondary" href="#services">Explore services</a>
               <a class="btn btn-primary" href="tel:9106201440">Call Us</a>
             </div>
