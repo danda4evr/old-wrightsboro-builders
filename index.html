@@ -498,6 +498,32 @@
           width: 100%;
         }
       }
+
+      /* Floating call button (mobile only) */
+      .call-float {
+        position: fixed;
+        bottom: 18px;
+        right: 18px;
+        width: 56px;
+        height: 56px;
+        background: var(--gold);
+        color: #fff;
+        border-radius: 999px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(16,43,80,0.18);
+        z-index: 9999;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 1.1rem;
+      }
+
+      .call-float:active { transform: scale(0.98); }
+
+      @media (max-width: 650px) {
+        .call-float { display: inline-flex; }
+      }
     </style>
   </head>
   <body>
@@ -734,6 +760,9 @@
         <div>Built on trust | Wilmington, NC</div>
       </div>
     </footer>
+
+    <!-- Floating call button shown only on small screens -->
+    <a class="call-float" href="tel:9106201440" aria-label="Call Old Wrightsboro Builders">📞</a>
 
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
