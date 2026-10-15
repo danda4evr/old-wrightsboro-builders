@@ -76,6 +76,7 @@
         justify-content: space-between;
         gap: 24px;
         min-height: 82px;
+        position: relative; /* for mobile dropdown positioning */
       }
 
       .brand {
@@ -122,6 +123,18 @@
         font-weight: 700;
         box-shadow: 0 10px 24px rgba(164, 119, 50, 0.18);
       }
+
+      /* Mobile toggle button (hidden on desktop) */
+      .nav-toggle {
+        display: none;
+        background: transparent;
+        border: none;
+        padding: 8px;
+        margin-left: 8px;
+        cursor: pointer;
+      }
+
+      .nav-toggle svg { width: 22px; height: 22px; display: block; }
 
       .hero {
         min-height: 650px;
@@ -478,6 +491,7 @@
         }
       }
 
+      /* MOBILE: hide full nav and show toggle; dropdown when open */
       @media (max-width: 650px) {
         .field-row {
           grid-template-columns: 1fr;
@@ -497,50 +511,41 @@
         .nav-cta {
           width: 100%;
         }
-      }
 
-      .call-float {
-        position: fixed;
-        bottom: 14px;
-        right: 14px;
-        width: 58px;
-        height: 58px;
-        background: linear-gradient(135deg, rgba(164,119,50,0.95), rgba(210,180,119,0.92));
-        color: #fff;
-        border-radius: 999px;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 8px 18px rgba(16,43,80,0.14);
-        z-index: 9999;
-        text-decoration: none;
-        font-weight: 700;
-        transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
-        border: 1px solid rgba(255,255,255,0.12);
-        opacity: 0.95;
-      }
+        /* show toggle */
+        .nav-toggle { display: inline-flex; }
 
-      .call-float svg {
-        width: 18px;
-        height: 18px;
-        display: block;
-        fill: #fff;
-      }
-
-      .call-float:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(16,43,80,0.18);
-        opacity: 1;
-      }
-
-      @media (max-width: 650px) {
-        .call-float { display: inline-flex; }
-      }
-
-      @media (max-width: 650px) {
-        section {
-          padding: 48px 0;
+        /* hide the nav links by default to save space */
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: rgba(255,255,255,0.98);
+          border: 1px solid var(--line);
+          border-top: none;
+          padding: 10px 14px 18px;
+          flex-direction: column;
+          gap: 8px;
+          box-shadow: 0 10px 30px rgba(16,43,80,0.06);
         }
+
+        /* when open, show the nav links as a vertical list */
+        .nav-links.open {
+          display: flex;
+        }
+
+        .nav-links a {
+          display: block;
+          padding: 10px 12px;
+          color: var(--navy);
+          background: transparent;
+          border-radius: 10px;
+          font-weight: 700;
+        }
+
+        .nav-links a:hover { background: rgba(16,43,80,0.03); }
 
         .container {
           width: calc(100vw - 32px);
@@ -653,7 +658,14 @@
           <span class="brand-text">Old Wrightsboro Builders</span>
         </a>
 
-        <nav class="nav-links" aria-label="Main navigation">
+        <!-- mobile toggle button -->
+        <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <nav id="main-nav" class="nav-links" aria-label="Main navigation">
           <a href="#services">Services</a>
           <a href="#projects">Projects</a>
           <a href="#about">About</a>
@@ -870,6 +882,7 @@
       </div>
     </footer>
 
+    <!-- Floating call button shown only on small screens -->
     <a class="call-float" href="tel:9106201440" aria-label="Call Old Wrightsboro Builders">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
         <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.21z" fill="#fff"/>
@@ -878,6 +891,36 @@
 
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
+
+      // mobile nav toggle behavior
+      (function(){
+        var toggle = document.querySelector('.nav-toggle');
+        var nav = document.getElementById('main-nav');
+        if (!toggle || !nav) return;
+        toggle.addEventListener('click', function(){
+          var open = nav.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+
+        // close nav when clicking a link (mobile)
+        Array.prototype.slice.call(nav.querySelectorAll('a')).forEach(function(link){
+          link.addEventListener('click', function(){
+            if (nav.classList.contains('open')){
+              nav.classList.remove('open');
+              toggle.setAttribute('aria-expanded','false');
+            }
+          });
+        });
+
+        // close nav on ESC
+        document.addEventListener('keydown', function(e){
+          if (e.key === 'Escape' && nav.classList.contains('open')){
+            nav.classList.remove('open');
+            toggle.setAttribute('aria-expanded','false');
+            toggle.focus();
+          }
+        });
+      })();
     </script>
   </body>
 </html>
